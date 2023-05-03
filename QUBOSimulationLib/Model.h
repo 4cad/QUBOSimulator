@@ -1,7 +1,6 @@
 #pragma once
 
 namespace QUBO {
-
     struct LinearTerm {
         int Variable;
         float Coeff;

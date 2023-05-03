@@ -1,6 +1,8 @@
 #include "CPUBruteForceSolver.h"
 
 #include <limits>
+#include <iostream>
+#include <bitset>
 
 namespace QUBO {
     Solution CPUBruteForceSolver::Solve(Model& model) {
@@ -12,9 +14,13 @@ namespace QUBO {
         best.objective = std::numeric_limits<double>::infinity(); // This should always be overridden by the 0 case
         for (size_t variables = 0; variables < upper_bound; variables++) {
             Solution candidate = Evaluate(model, variables);
+            std::cout << "[" << std::bitset<8>(variables) << "] " << candidate.objective;
             if (candidate.objective < best.objective) {
+                std::cout << "   <--- NEW BEST";
                 best = candidate;
+                
             }
+            std::cout << std::endl;
         }
         return best;
     }

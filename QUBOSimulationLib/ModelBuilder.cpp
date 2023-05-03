@@ -14,10 +14,10 @@ namespace QUBO {
     }
 
     float& ModelBuilder::Q(Variable a, Variable b) {
-        UpdateVariableCount(a);
-        UpdateVariableCount(b);
-        short i = a;
-        short j = b;
+        UpdateVariableCount(a.index);
+        UpdateVariableCount(b.index);
+        short i = a.index;
+        short j = b.index;
         if (i == j) {
             throw std::exception("ModelBuilder::Q - quadratic terms require i != j");
         }
@@ -30,8 +30,8 @@ namespace QUBO {
     }
 
     float& ModelBuilder::L(Variable a) {
-        UpdateVariableCount(a);
-        return linear_terms_[a];
+        UpdateVariableCount(a.index);
+        return linear_terms_[a.index];
     }
 
     Model* ModelBuilder::Build() {
@@ -71,4 +71,16 @@ namespace QUBO {
     { 
         variable_count_ = std::max<short>(var + 1, variable_count_); 
     }
+
+
+    const QuadraticTermBuilder operator*(const Variable a, const Variable b)
+    {
+        return QuadraticTermBuilder(a, b, 1);
+    }
+
+    const LinearTermBuilder operator*(Variable var, double coeff)
+    {
+        return LinearTermBuilder(var, coeff);
+    }
+
 }

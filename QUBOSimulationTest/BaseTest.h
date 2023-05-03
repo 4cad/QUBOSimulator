@@ -2,6 +2,7 @@
 #include "ModelBuilder.h"
 
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 using namespace QUBO;
 
 inline size_t V(const std::vector<int> args)

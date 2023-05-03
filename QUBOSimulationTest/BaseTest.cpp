@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "BaseTest.h"
 
 #include "CPUBruteForceSolver.h"

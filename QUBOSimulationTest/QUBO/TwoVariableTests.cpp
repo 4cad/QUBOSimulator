@@ -1,5 +1,3 @@
-#include "pch.h"
-
 #include "BaseTest.h"
 
 class TwoVariableTests : public BaseTest {};
